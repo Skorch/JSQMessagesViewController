@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) UIView *cachedPlaceholderView;
 
+
 @end
 
 
@@ -43,6 +44,7 @@
     self = [super init];
     if (self) {
         _appliesMediaViewMaskAsOutgoing = maskAsOutgoing;
+        _applyMediaViewMask = YES;
         _cachedPlaceholderView = nil;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didReceiveMemoryWarningNotification:)
@@ -98,7 +100,12 @@
         CGSize size = [self mediaViewDisplaySize];
         UIView *view = [JSQMessagesMediaPlaceholderView viewWithActivityIndicator];
         view.frame = CGRectMake(0.0f, 0.0f, size.width, size.height);
-        [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:view isOutgoing:self.appliesMediaViewMaskAsOutgoing];
+        
+        if(self.applyMediaViewMask){
+            
+            [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:view isOutgoing:self.appliesMediaViewMaskAsOutgoing];
+        }
+        
         self.cachedPlaceholderView = view;
     }
     

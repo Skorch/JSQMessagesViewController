@@ -41,6 +41,14 @@
 @property (assign, nonatomic) BOOL appliesMediaViewMaskAsOutgoing;
 
 /**
+ *  A boolean value indicating whether this media item should apply
+ *  a bubble image mask to its media views.
+ *  Specify `YES` for a mask, and `NO` for no mask.
+ *  The default value is `YES`.
+ */
+@property (assign, nonatomic) BOOL applyMediaViewMask;
+
+/**
  *  Initializes and returns a media item with the specified value for maskAsOutgoing.
  *
  *  @param maskAsOutgoing A boolean value indicating whether this media item should apply
