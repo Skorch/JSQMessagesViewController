@@ -443,6 +443,22 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     return 1;
 }
 
+-(NSString *)collectionView:(JSQMessagesCollectionView *)collectionView incomingCellResuseIdentifierAtIndexPath:(NSIndexPath *)indexPath{
+    return self.incomingCellIdentifier;
+}
+
+- (NSString *)collectionView:(JSQMessagesCollectionView *)collectionView incomingMediaCellResuseIdentifierAtIndexPath:(NSIndexPath *)indexPath{
+    return self.incomingMediaCellIdentifier;
+}
+
+-(NSString *)collectionView:(JSQMessagesCollectionView *)collectionView outgoingCellResuseIdentifierAtIndexPath:(NSIndexPath *)indexPath{
+    return self.outgoingCellIdentifier;
+}
+
+-(NSString *)collectionView:(JSQMessagesCollectionView *)collectionView outgoingMediaCellResuseIdentifierAtIndexPath:(NSIndexPath *)indexPath{
+    return self.outgoingMediaCellIdentifier;
+}
+
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
@@ -453,10 +469,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     NSString *cellIdentifier = nil;
     if (isMediaMessage) {
-        cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier;
+        cellIdentifier = isOutgoingMessage ? [collectionView.dataSource collectionView:collectionView outgoingMediaCellResuseIdentifierAtIndexPath:indexPath] : [collectionView.dataSource collectionView:collectionView incomingMediaCellResuseIdentifierAtIndexPath:indexPath];
     }
     else {
-        cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
+        
+        cellIdentifier = isOutgoingMessage ? [collectionView.dataSource collectionView:collectionView outgoingCellResuseIdentifierAtIndexPath:indexPath] : [collectionView.dataSource collectionView:collectionView incomingCellResuseIdentifierAtIndexPath:indexPath];
     }
 
     JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];

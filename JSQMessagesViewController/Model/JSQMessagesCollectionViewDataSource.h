@@ -53,6 +53,47 @@
 - (NSString *)senderId;
 
 /**
+ *  Asks the data source for the reuse identifier that corresponds to the specified item at indexPath in the collectionView.
+ *
+ *  @param collectionView The collection view requesting this information.
+ *  @param indexPath      The index path that specifies the location of the item.
+ *
+ *  @return A string representing the reuse identifier for a media cell at a particular index path
+ */
+- (NSString *)collectionView:(JSQMessagesCollectionView *)collectionView outgoingMediaCellResuseIdentifierAtIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ *  Asks the data source for the reuse identifier that corresponds to the specified item at indexPath in the collectionView.
+ *
+ *  @param collectionView The collection view requesting this information.
+ *  @param indexPath      The index path that specifies the location of the item.
+ *
+ *  @return A string representing the reuse identifier at a particular index path
+ */
+- (NSString *)collectionView:(JSQMessagesCollectionView *)collectionView outgoingCellResuseIdentifierAtIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ *  Asks the data source for the reuse identifier that corresponds to the specified item at indexPath in the collectionView.
+ *
+ *  @param collectionView The collection view requesting this information.
+ *  @param indexPath      The index path that specifies the location of the item.
+ *
+ *  @return A string representing the reuse identifier for a media cell at a particular index path
+ */
+- (NSString *)collectionView:(JSQMessagesCollectionView *)collectionView incomingMediaCellResuseIdentifierAtIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ *  Asks the data source for the reuse identifier that corresponds to the specified item at indexPath in the collectionView.
+ *
+ *  @param collectionView The collection view requesting this information.
+ *  @param indexPath      The index path that specifies the location of the item.
+ *
+ *  @return A string representing the reuse identifier at a particular index path
+ */
+- (NSString *)collectionView:(JSQMessagesCollectionView *)collectionView incomingCellResuseIdentifierAtIndexPath:(NSIndexPath *)indexPath;
+
+
+/**
  *  Asks the data source for the message data that corresponds to the specified item at indexPath in the collectionView.
  *
  *  @param collectionView The collection view requesting this information.
